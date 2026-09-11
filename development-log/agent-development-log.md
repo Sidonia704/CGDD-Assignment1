@@ -395,3 +395,78 @@ All five regression checks passed, including a coverage sweep from ground level 
 
 ### Student Follow-up (REQUIRED — do NOT write “TBD” or leave blank)
 The agent is waiting for the student to report whether the lowered layer now makes climbing over anti-air vehicles appropriately dangerous while leaving enough lateral maneuvering room.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## Interaction 07 — Raw Interaction Log
+
+**Time:** 2026-09-11  
+**Development Stage:** GitHub repository and online-play deployment  
+**Current Goal:** Publish the complete project to a public `CGDD-Assignment1` GitHub repository and make the game playable through GitHub Pages.  
+**Git Tag / Commit:** Local source commit `ac5f766`; GitHub-normalized published commit `6014a9d` contains the identical verified tree.
+
+### Student Prompt
+The student asked the agent to push the entire folder to their GitHub account, create a repository called “CGDD Assignment1,” and make the game playable online.
+
+### Agent Response Summary
+The agent created the public repository `Sidonia704/CGDD-Assignment1`, uploaded the complete authored project, enabled GitHub Pages, and verified the live site. It added an automatic Pages workflow so future `main` updates redeploy the playable build.
+
+### AI Design Assumptions (REQUIRED — do not skip)
+- Used `CGDD-Assignment1` because GitHub repository names cannot contain spaces.
+- Created a public repository so the GitHub Pages game can be opened without account access.
+- Published only the generated pages and runtime `assets/` as the website artifact, while retaining source code, original FBX models, design documents, and logs in the repository.
+- Kept reproducible caches and dependencies (`node_modules`, `dist`, `.npm-cache`, logs, OS metadata) excluded through `.gitignore`.
+
+### Development Action
+Added `.github/workflows/pages.yml`, documented deployment in `README.md`, initialized the local `main` repository, created the first commit, connected the student's GitHub account, created the public remote repository, uploaded and SHA-verified all 78 tracked files through the GitHub Git Data API, enabled workflow-based Pages, reran the initially failed deployment after enablement, and checked the public URLs.
+
+### Files / Mechanics Changed
+- Added `.github/workflows/pages.yml`.
+- Updated `README.md` and this development log.
+- Created local Git history and the public GitHub repository. No game mechanic changed.
+
+### Immediate Result
+The repository is available at `https://github.com/Sidonia704/CGDD-Assignment1`. GitHub Pages deployed successfully on workflow attempt 2 at `https://sidonia704.github.io/CGDD-Assignment1/`. Public HEAD requests returned HTTP 200 for the home page, game page, process page, and `assets/models/drone.glb`; the model resource returned `model/gltf-binary`.
+
+The first standard Git push was interrupted by a network reset and a retry could not connect to GitHub port 443. The agent switched to GitHub's REST Git Data API. That API required a temporary seed commit before accepting blobs in an empty repository. All 78 blobs and the complete tree matched the local Git SHAs. GitHub normalized the commit date representation, producing remote commit `6014a9d` instead of local `ac5f766`, while preserving the exact tree. The first Pages run failed at Configure Pages because it ran before Pages had been enabled; after enabling workflow-based Pages, the failed job reran successfully.
+
+### Student Follow-up (REQUIRED — do NOT write “TBD” or leave blank)
+The deployment requested by the student is complete. The pending decision is whether the public GitHub repository and live game URL should be submitted as-is or whether the student wants a final presentation/readability pass before course submission.
+
+══════════════════════════════════════
+## Reflection 05 — Stage Reflection
+
+**Time:** 2026-09-11  
+**Covered Interactions:** Interaction 07  
+**Development Stage:** Public repository and playable deployment milestone
+
+### Goal of This Stage
+Preserve the full development project on GitHub and provide an online version that can be played from a repository subpath.
+
+### What Changed in the Game
+No mechanics changed. The current build became publicly playable, and future changes to `main` can be published through the included Pages workflow.
+
+### How AI Helped
+The agent prepared Git tracking and deployment automation, checked repository contents for common credential patterns and GitHub size limits, recovered from expired authentication and blocked Git transport, verified every uploaded Git object, enabled Pages, diagnosed the first deployment failure, reran it, and validated public resources.
+
+### Student Decisions
+The student chose GitHub as the public project home and requested that the complete folder be included and the game be playable online. The student personally completed GitHub's device authorization.
+
+### Student Independent Changes (NEW — do not skip)
+The student completed the required GitHub device authorization. No independent game or repository content changes were reported during this stage.
+
+### AI Influence
+The AI selected the repository-safe slug, public visibility, workflow-based Pages deployment, and the specific runtime artifact contents. These choices did not alter the game design.
+
+### Design Impact
+The public project space now exposes the playable game, designer statement, system graph, and collaboration timeline together, making the current design process reviewable in the form required by the course.
+
+### Problems / Open Questions
+- Standard Git HTTPS transport was unavailable during publication; the verified REST upload produced an equivalent tree with a GitHub-normalized commit identity.
+- The repository is public, including the supplied design documents and original model assets, as requested.
+- The student should test the live URL on the device/browser intended for presentation.
+
+### Next Step
+Open the public game in a fresh browser, play each challenge once, and use the repository and Pages URLs for submission if the experience matches the local build.
+
+### Required Student Reflection (ask me to answer — do NOT answer it for me)
+Does seeing the game, design statement, system graph, and development record together online change how clearly the project communicates your original life experience and core emotion?
