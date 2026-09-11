@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The human–AI development timeline for Last Dash." />
+    <title>Development Process — Last Dash</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+  </head>
+  <body class="site-page process-page">
+    <header class="site-header">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">LD</span><span><strong>LAST DASH</strong><small>Game Design from Everyday Life</small></span></a>
+      <nav aria-label="Primary navigation"><a href="./index.html">Design</a><a aria-current="page" href="./process.html">Process</a><a class="nav-play" href="./game.html">Play game</a></nav>
+    </header>
+    <main class="process-main">
+      <section class="process-intro">
+        <p class="eyebrow">Human–AI development timeline</p>
+        <h1>What changed, who decided, and what remains uncertain.</h1>
+        <p>This page is a concise view of the chronological development log. It records design constraints, implementation choices, tests, and unresolved questions without smoothing over the process.</p>
+      </section>
+      <section class="timeline" aria-label="Development timeline">
+        <article class="timeline-entry">
+          <div class="timeline-meta"><span>INTERACTION 01</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+          <div class="timeline-body"><p class="status-chip">FIRST PLAYABLE</p><h2>Core loop and project space</h2><p>The student confirmed <code>Last-Dash.md</code> as the source of truth and authorized the agent to resolve underspecified mechanics in service of accurate learning and complete playability.</p><ul><li>Built the website and playable game in the same milestone.</li><li>Preserved the speed–maneuverability trade-off and three spatial challenge presets.</li><li>Browser testing exposed a target-path field mismatch; it was corrected and the rebuilt moving system passed the follow-up console check.</li><li>Used the separate logging protocol as the authoritative log format.</li></ul></div>
+        </article>
+        <article class="timeline-entry">
+          <div class="timeline-meta"><span>INTERACTION 02</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+          <div class="timeline-body"><p class="status-chip">CONTROL REVISION</p><h2>From aircraft steering to six-axis drone flight</h2><p>The student rejected automatic forward motion and specified a hover-capable control model: independent translation, full mouse orientation, and explicit barrel roll.</p><ul><li>Removed minimum forward speed and automatic travel.</li><li>Separated forward/backward, lateral, and vertical acceleration from 360° body orientation.</li><li>Updated every player-facing control reference and preserved velocity-dependent rotational authority.</li></ul></div>
+        </article>
+        <article class="timeline-entry">
+          <div class="timeline-meta"><span>INTERACTION 03</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+          <div class="timeline-body"><p class="status-chip">INPUT CORRECTION</p><h2>Roll direction matched to the control intent</h2><p>The student clarified the desired roll direction. The rotation sign and every control reference were corrected so <code>Q</code> rolls left and <code>E</code> rolls right.</p></div>
+        </article>
+        <article class="timeline-entry">
+          <div class="timeline-meta"><span>INTERACTION 04</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+          <div class="timeline-body"><p class="status-chip">THREAT TUNING</p><h2>Denser defenses and faster consequences</h2><p>Every challenge gained more defense vehicles and larger threat zones. Continuous exposure now completes lock in 0.8 seconds, mouse sensitivity is 30% lower, and result titles use three unambiguous outcomes.</p></div>
+        </article>
+        <article class="timeline-entry">
+          <div class="timeline-meta"><span>INTERACTION 05</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+          <div class="timeline-body"><p class="status-chip">MODELS & COMBAT FEEDBACK</p><h2>Readable attacks in a richer airspace</h2><p>The student supplied FBX assets and requested skyline missile defense, visible anti-air gunfire, equal 0.8-second tank defense, unrestricted impact speed, and particle destruction.</p><ul><li>Replaced procedural vehicles and buildings with the supplied geometry; converted and shared meshes for browser use.</li><li>Added a separate 2-second high-altitude lock, tracking missiles, smoke trails, and visible cannon rounds.</li><li>Removed the minimum impact speed: fast approaches reduce defense exposure instead.</li><li>Added model breakup, sparks, smoke, muzzle flashes, rotor wash, and a delayed result window.</li></ul></div>
+        </article>
+      <article class="timeline-entry">
+        <div class="timeline-meta"><span>INTERACTION 06</span><time datetime="2026-09-08">08 SEP 2026</time></div>
+        <div class="timeline-body"><p class="status-chip">COVERAGE TUNING</p><h2>Close the safe altitude gap</h2><p>The student asked for wider anti-air zones and a lower sky layer. Vehicle radii increased by about 20%, and the sky threshold dropped to 27 / 26 / 24 m. Red cylindrical zones overlap it by four metres, removing the safe space above the old hemisphere edges.</p></div>
+      </article>
+      </section>
+      <aside class="process-note"><span>LOG STATUS</span><p>The detailed raw record lives in <code>development-log/agent-development-log.md</code>. Student reflection is intentionally left for the student at the end of the milestone.</p></aside>
+    </main>
+    <footer><span>Last Dash · Yizhou Zhang · 2026</span><a href="./game.html">Play the current build →</a></footer>
+    <script type="module" src="./src/page.js"></script>
+  </body>
+</html>

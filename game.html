@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Play Last Dash, a third-person 3D drone navigation game." />
+    <title>Play — Last Dash</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+    <script type="module" crossorigin src="./assets/build/game-Bk8tRPoB.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/build/site-C88lQckE.js">
+    <link rel="stylesheet" crossorigin href="./assets/build/site-B38yfPjT.css">
+  </head>
+  <body class="game-page">
+    <header class="game-header">
+      <a class="brand compact" href="./index.html"><span class="brand-mark" aria-hidden="true">LD</span><span><strong>LAST DASH</strong><small>FLIGHT TEST / M01</small></span></a>
+      <div class="game-header-actions"><button id="controls-button" class="ghost-button" type="button">Controls</button><a class="ghost-button" href="./index.html">Exit</a></div>
+    </header>
+
+    <main id="game-shell" class="game-shell">
+      <canvas id="game-canvas" aria-label="3D drone flight game"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div id="danger-flash" class="danger-flash" aria-hidden="true"></div>
+
+      <section id="mission-select" class="mission-select" aria-labelledby="mission-title">
+        <div class="mission-panel">
+          <p class="eyebrow">Flight test / select airspace</p>
+          <h1 id="mission-title">Preserve room for the next correction.</h1>
+          <p>Fly a six-axis drone through moving defenses. Tanks and anti-air vehicles open fire after 0.8 seconds inside their radius. Enlarged red columns overlap the lowered sky layer: flying over a defense still exposes you to tracking. Above the amber grid, a separate 2-second lock launches a missile. Any direct tank hit succeeds.</p>
+          <div class="mission-options" role="radiogroup" aria-label="Challenge preset">
+            <button class="mission-card selected" type="button" data-level="0" role="radio" aria-checked="true"><span class="mission-number">01</span><span><strong>Open-Space Intercept</strong><small>3 defenses · clear airspace</small></span><span class="difficulty-bars" aria-label="Low spatial pressure"><i></i><i></i><i></i></span></button>
+            <button class="mission-card" type="button" data-level="1" role="radio" aria-checked="false"><span class="mission-number">02</span><span><strong>Restricted Approach</strong><small>4 defenses · solid obstacles</small></span><span class="difficulty-bars two" aria-label="Medium spatial pressure"><i></i><i></i><i></i></span></button>
+            <button class="mission-card" type="button" data-level="2" role="radio" aria-checked="false"><span class="mission-number">03</span><span><strong>Urban Intercept</strong><small>5 defenses · narrow corridors</small></span><span class="difficulty-bars three" aria-label="High spatial pressure"><i></i><i></i><i></i></span></button>
+          </div>
+          <button id="launch-button" class="button button-primary launch-button" type="button">Launch challenge 01 <span aria-hidden="true">→</span></button>
+          <p class="launch-note">Keyboard recommended · sound begins after launch</p>
+        </div>
+      </section>
+
+      <section id="hud" class="hud" aria-label="Flight information" hidden>
+        <div class="hud-top-left">
+          <span id="level-label" class="hud-label">CHALLENGE 01</span>
+          <strong id="level-name">OPEN-SPACE INTERCEPT</strong>
+        </div>
+        <div class="hud-top-center">
+          <div class="lock-readout"><span id="lock-state">SAFE</span><div class="lock-track"><i id="lock-fill"></i></div><b id="lock-value">000</b></div>
+          <small id="lock-hint">NO ACTIVE TRACK</small>
+          <div class="sky-readout"><span id="sky-status">SKY TRACK CLEAR</span><div class="lock-track"><i id="sky-fill"></i></div><small id="sky-hint">2s TO MISSILE LAUNCH</small></div>
+        </div>
+        <div class="hud-left">
+          <div class="meter-block"><span>SPEED</span><strong><b id="speed-value">0</b> <small>m/s</small></strong><div class="tick-track"><i id="speed-fill"></i><em id="impact-tick"></em></div></div>
+          <div class="meter-block"><span>ALTITUDE</span><strong><b id="altitude-value">0</b> <small>m</small></strong></div>
+          <div class="meter-block authority"><span>TURN AUTHORITY</span><div class="authority-dots" id="authority-dots"><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+        <div class="hud-right">
+          <div><span>TARGET RANGE</span><strong><b id="target-distance">0</b> m</strong></div>
+          <div><span>SKY DEFENSE ABOVE</span><strong><b id="impact-speed">0</b> m</strong></div>
+          <div><span>BOOST</span><strong id="boost-state">READY</strong></div>
+        </div>
+        <div id="target-marker" class="target-marker" aria-hidden="true"><i></i><span>TARGET</span><b id="marker-distance">0 m</b></div>
+        <div id="flight-message" class="flight-message" aria-live="polite"></div>
+        <div class="hud-controls"><span><kbd>W</kbd><kbd>S</kbd> FORWARD / BACK</span><span><kbd>A</kbd><kbd>D</kbd> STRAFE</span><span><kbd>Q</kbd> LEFT ROLL <kbd>E</kbd> RIGHT ROLL</span><span><kbd>SPACE</kbd><kbd>CTRL</kbd> RISE / DESCEND</span><span>MOUSE AIM</span></div>
+      </section>
+
+      <section id="result-panel" class="result-panel" hidden aria-live="assertive">
+        <div class="result-card"><p id="result-code" class="eyebrow">MISSION COMPLETE</p><h2 id="result-title">Target intercepted</h2><p id="result-detail"></p><div class="result-readings"><div><span>FINAL SPEED</span><b id="result-speed">0 m/s</b></div><div><span>LOCK LEVEL</span><b id="result-lock">0%</b></div></div><div class="result-actions"><button id="retry-button" class="button button-primary" type="button">Retry challenge</button><button id="choose-button" class="button button-secondary" type="button">Choose airspace</button></div></div>
+      </section>
+
+      <dialog id="controls-dialog" class="controls-dialog">
+        <div class="dialog-heading"><div><p class="eyebrow">Flight controls</p><h2>Arcade handling</h2></div><button id="close-controls" class="close-button" type="button" aria-label="Close controls">×</button></div>
+        <div class="control-grid"><div><kbd>MOUSE</kbd><span><strong>Full orientation</strong><small>Yaw and pitch through 360°</small></span></div><div><kbd>W / S</kbd><span><strong>Forward / backward</strong><small>Accelerate in either direction</small></span></div><div><kbd>A / D</kbd><span><strong>Strafe</strong><small>Translate left / right</small></span></div><div><kbd>Q / E</kbd><span><strong>Barrel roll</strong><small>Q rolls left · E rolls right</small></span></div><div><kbd>SPACE / CTRL</kbd><span><strong>Rise / descend</strong><small>Vertical translation</small></span></div><div><kbd>SHIFT</kbd><span><strong>Boost</strong><small>Burst along the current facing</small></span></div><div><kbd>R</kbd><span><strong>Restart</strong><small>Reset current challenge</small></span></div><div><kbd>ESC</kbd><span><strong>Release mouse</strong><small>Click the flight view to recapture</small></span></div></div>
+        <p class="dialog-tip">Release movement keys to slow into a hover. Red columns show anti-air coverage; the amber dome marks tank defense. Both trigger gunfire after 0.8 seconds. Red columns extend into the sky layer, so climbing above a vehicle does not find a safe gap. The amber grid starts sky defense at 27 / 26 / 24 m by challenge: descend before its separate 2-second meter fills. Leaving a vehicle's radius resets its lock. Launched missiles keep tracking; solid buildings can intercept them. Contact with the tank succeeds at any speed.</p>
+      </dialog>
+    </main>
+  </body>
+</html>

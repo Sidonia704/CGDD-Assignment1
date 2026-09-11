@@ -1,0 +1,1 @@
+import"./site-C88lQckE.js";document.querySelectorAll(`.system-figure img`).forEach(e=>{e.addEventListener(`click`,()=>window.open(e.src,`_blank`,`noopener`)),e.tabIndex=0,e.addEventListener(`keydown`,t=>{(t.key===`Enter`||t.key===` `)&&window.open(e.src,`_blank`,`noopener`)})});

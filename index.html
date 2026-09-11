@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Last Dash is a browser game about preserving speed and maneuvering space while piloting an FPV drone through moving threats." />
+    <title>Last Dash — Game Design from Everyday Life</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
+    <script type="module" crossorigin src="./assets/build/site-C88lQckE.js"></script>
+    <script type="module" crossorigin src="./assets/build/page-CSjsYY0-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/build/site-B38yfPjT.css">
+  </head>
+  <body class="site-page">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Last Dash home">
+        <span class="brand-mark" aria-hidden="true">LD</span>
+        <span><strong>LAST DASH</strong><small>Game Design from Everyday Life</small></span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a aria-current="page" href="./index.html">Design</a>
+        <a href="./process.html">Process</a>
+        <a class="nav-play" href="./game.html">Play game</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-grid" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A 3D spatial-judgment game</p>
+          <h1 id="hero-title">The shortest route leaves no room to survive.</h1>
+          <p class="hero-lede">Pilot an arcade-style FPV drone toward a moving armored target. Read the airspace, escape moving lock-on zones, and preserve enough speed—and enough room—to make the final correction.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="./game.html">Launch mission <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#system">Read the system <span aria-hidden="true">↓</span></a>
+          </div>
+          <dl class="mission-facts">
+            <div><dt>Perspective</dt><dd>Third-person 3D</dd></div>
+            <div><dt>Session</dt><dd>1–2 minutes</dd></div>
+            <div><dt>Challenges</dt><dd>3 spatial constraints</dd></div>
+          </dl>
+        </div>
+        <div class="hero-instrument" aria-label="Core learning shift">
+          <div class="instrument-grid" aria-hidden="true"></div>
+          <span class="instrument-label">FLIGHT PRINCIPLE / 01</span>
+          <div class="tradeoff-dial">
+            <div class="dial-ring"><div class="dial-needle"></div></div>
+            <div class="dial-labels"><span>CONTROL</span><span>SPEED</span></div>
+          </div>
+          <p>The drone can hover at any orientation and translate independently. Velocity shortens exposure but reduces rotational authority and the room available for correction.</p>
+        </div>
+      </section>
+
+      <section class="statement-band" aria-labelledby="statement-title">
+        <p class="section-number">01 / DESIGNER STATEMENT</p>
+        <div>
+          <h2 id="statement-title">A decision about space, not a reflex test.</h2>
+          <p>This project grew from observing FPV drones navigate defensive threats in footage from the Russia–Ukraine war. The design abstracts that experience into spatial judgment rather than military realism: the target and defense units are game objects and mechanical carriers, not a simulation of real operations.</p>
+        </div>
+        <blockquote>Beginners chase the direct line. Skilled pilots preserve the room to turn, evade, and correct.</blockquote>
+      </section>
+
+      <section class="content-section knowledge" aria-labelledby="knowledge-title">
+        <div class="section-heading">
+          <p class="section-number">02 / DOMAIN KNOWLEDGE</p>
+          <h2 id="knowledge-title">Speed changes the meaning of open space.</h2>
+        </div>
+        <div class="knowledge-grid">
+          <article><span class="card-index">A</span><h3>Observe</h3><p>Read target motion, threat boundaries, obstacle gaps, current speed, and the space still available for recovery.</p></article>
+          <article><span class="card-index">B</span><h3>Judge</h3><p>Separate where the drone faces from where it moves. Decide whether to translate, rotate, roll, hover, or spend speed while preserving a recovery path.</p></article>
+          <article><span class="card-index">C</span><h3>Adjust</h3><p>Tanks and anti-air vehicles fire after 0.8 seconds inside their visible radius. Enlarged vehicle coverage overlaps the lowered sky layer, where a separate 2-second lock launches missiles. Read the tracers and smoke trails, break exposure, and use solid cover. Any tank contact succeeds; speed buys a shorter exposure window.</p></article>
+        </div>
+      </section>
+
+      <section class="content-section system-section" id="system" aria-labelledby="system-title">
+        <div class="section-heading split-heading">
+          <div><p class="section-number">03 / SYSTEM DESIGN</p><h2 id="system-title">Every signal supports the next judgment.</h2></div>
+          <p>Environment data becomes player action, calculated risk, and readable feedback. The graph below is the student-authored system reference.</p>
+        </div>
+        <figure class="system-figure">
+          <img src="./assets/images/system-graph.png" alt="System graph connecting win and game-over states, player inputs, game environment data, three levels, and exposed HUD data." />
+          <figcaption>System graph by Yizhou Zhang. Select the image to inspect it at full size.</figcaption>
+        </figure>
+      </section>
+
+      <section class="content-section challenges" aria-labelledby="challenge-title">
+        <div class="section-heading">
+          <p class="section-number">04 / CHALLENGE PROGRESSION</p>
+          <h2 id="challenge-title">The controls stay fixed. Usable space disappears.</h2>
+        </div>
+        <div class="challenge-list">
+          <article><span class="level-number">01</span><div><p class="level-kicker">OPEN-SPACE INTERCEPT</p><h3>Learn the drone</h3><p>Three moving defense zones, generous boundaries, and a moving target expose the basic speed–control trade-off. Sky defense begins at 27 m; the later challenges lower it to 26 m and 24 m.</p></div><span class="constraint">OPEN</span></article>
+          <article><span class="level-number">02</span><div><p class="level-kicker">RESTRICTED APPROACH</p><h3>Abandon the direct line</h3><p>Four enlarged defense zones and solid obstacles force earlier turns, altitude changes, and deliberate route correction.</p></div><span class="constraint">OBSTRUCTED</span></article>
+          <article><span class="level-number">03</span><div><p class="level-kicker">URBAN INTERCEPT</p><h3>Preserve the next maneuver</h3><p>Five defenses, narrow passages, and overlapping enlarged zones make every burst of speed a commitment.</p></div><span class="constraint">DENSE</span></article>
+        </div>
+      </section>
+
+      <section class="play-band">
+        <div><p class="eyebrow">First playable milestone</p><h2>Choose a route. Keep a way out.</h2></div>
+        <a class="button button-light" href="./game.html">Play Last Dash <span aria-hidden="true">→</span></a>
+      </section>
+    </main>
+
+    <footer><span>Last Dash · Yizhou Zhang · 2026</span><span>Course project: Game Design from Everyday Life</span></footer>
+  </body>
+</html>
